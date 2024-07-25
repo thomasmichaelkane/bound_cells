@@ -37,7 +37,7 @@ Notes
 
 Arguments
 ----------
-file name : str
+path : str
     The relative or absolute path to the coordinates file. This
     file should be a two column csv file containing x and y 
     coordinates of all cell centres (in pixels).
@@ -61,17 +61,17 @@ dimension (1) : int
 
 import sys
 
-from lib import CellDist, geometry, parse
-from lib.utils.utils import *
+from bound_cells import CellDist, geometry, parse
+from bound_cells.utils.util_functions import *
 
 def main():
     
-    FILE_NAME, DIM, ALPHA_COUNT, ALPHA_ALLOWANCE = parse_args()
+    PATH, DIM, ALPHA_COUNT, ALPHA_ALLOWANCE = parse_args()
     
-    coords = csv_to_list(FILE_NAME)
+    coords = csv_to_list(PATH)
     points = coords_as_np(coords)
     
-    dist = CellDist(points, DIM, id=FILE_NAME)
+    dist = CellDist(points, DIM, id=PATH)
 
     dist.calc_stats()
     icd = dist.get_icd()
@@ -104,7 +104,7 @@ def parse_args():
         
     elif len(sys.argv) == 3:
         
-        file_name = parse.file_name(sys.argv[1])
+        path = parse.path(sys.argv[1])
         dim_uni = sys.argv[2]
         dim = [parse.dim(dim_uni), parse.dim(dim_uni)]
         
@@ -113,14 +113,14 @@ def parse_args():
     
     elif len(sys.argv) == 4:
         
-        file_name = parse.file_name(sys.argv[1])
+        path = parse.path(sys.argv[1])
         dim = [parse.dim(sys.argv[2]), parse.dim(sys.argv[3])]
         alpha_count = 3
         alpha_allowance = 0.1
         
     elif len(sys.argv) == 5:
         
-        file_name = parse.file_name(sys.argv[1])
+        path = parse.path(sys.argv[1])
         dim = [parse.dim(sys.argv[2]), parse.dim(sys.argv[3])]
         alpha_count = parse.alpha_count(sys.argv[4])
         
@@ -128,7 +128,7 @@ def parse_args():
         
     elif len(sys.argv) == 6:
         
-        file_name = parse.file_name(sys.argv[1])
+        path = parse.path(sys.argv[1])
         dim = [parse.dim(sys.argv[2]), parse.dim(sys.argv[3])]
         alpha_count = parse.alpha_count(sys.argv[4])    
         alpha_allowance = parse.alpha_allowance(sys.argv[5])  
@@ -137,6 +137,6 @@ def parse_args():
         
         raise KeyError("Too many input arguments")
     
-    return file_name, dim, alpha_count, alpha_allowance
+    return path, dim, alpha_count, alpha_allowance
 
 main()

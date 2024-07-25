@@ -9,7 +9,7 @@ Module Functions:
 
 import numpy as np
 
-from ..utils.utils import *
+from bound_cells.utils.util_functions import *
 
 def generate(num_points, dim, min_separation=None):
     """

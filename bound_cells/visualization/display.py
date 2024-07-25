@@ -17,17 +17,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm, colors, patches
 
-from ..utils.utils import *
-from ..utils.enums import PointType
-from ..utils.settings import display_settings
+from bound_cells.utils.util_functions import *
+from bound_cells.utils.enums import PointType
 
 def contour_plot(points, densities, contour_levels):
+    name = contour_levels
     pcm = density_plot(points, densities, show=False)
     plt.close()
     x, y = map(np.array, zip(*points))
     (xi, yi, zi) = densities
 
-    fig = plt.figure(figsize=(7,8))
+    fig = plt.figure(figsize=(20,20))
     ax = fig.add_subplot(111)
     
     # Create more contour levels
@@ -44,7 +44,10 @@ def contour_plot(points, densities, contour_levels):
     cbar.set_label('Density (cells/mm²)')
     
     plt.gca().invert_yaxis()
-    plt.show()
+    # plt.show()
+    
+    plt.savefig(str(name) + '.jpg')
+    plt.close()
 
 def density_plot(points, densities, show=True):
     x, y = map(np.array, zip(*points))
@@ -167,7 +170,7 @@ def fill_cell(polygon, color):
     """
     plt.fill(*zip(*polygon), color)
 
-def show_voronoi(vor, cells, fill, point_type, point_style, point_color, point_size, line_color, line_width, neighbor_scale, neighbor_colormap):
+def show_voronoi(vor, dim, cells, fill, point_type, point_style, point_color, point_size, line_color, line_width, neighbor_scale, neighbor_colormap):
     """
     Displays a Voronoi diagram.
 
@@ -180,7 +183,7 @@ def show_voronoi(vor, cells, fill, point_type, point_style, point_color, point_s
     """
     ax = plt.axes()
 
-    for j in cells:
+    for i, j in enumerate(cells):
         region = vor.regions[vor.point_region[j]]
         (x, y) = vor.points[j]
         cell_polygon = [vor.vertices[i] for i in region]
@@ -204,6 +207,8 @@ def show_voronoi(vor, cells, fill, point_type, point_style, point_color, point_s
         add_neighbor_legend(ax, neighbor_scale, neighbor_colormap)
 
     ax.set_aspect("equal")
+    ax.set_xlim([0, dim[0]])
+    ax.set_ylim([0, dim[1]])
     plt.gca().invert_yaxis()
     plt.show()
 

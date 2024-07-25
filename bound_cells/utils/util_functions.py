@@ -19,8 +19,24 @@ Module Functions:
 
 import csv
 import numpy as np
+import yaml
 from scipy.spatial import distance
 from shapely.geometry import Polygon
+
+from bound_cells.utils import PointType
+
+def load_config():
+    
+    with open('config.yaml') as config:
+        config = yaml.load(config.read(), Loader=yaml.Loader)
+        
+    try:
+        config['display_settings']['point_type'] = PointType(config['display_settings']['point_type'])
+    except Exception as e:
+        print(e)
+        
+    return config
+
 
 def rotate_coordinates_90_degrees(num, coordinates, dim):
     

@@ -18,8 +18,7 @@ from scipy.stats.kde import gaussian_kde
 from sklearn.neighbors import KernelDensity
 from sklearn.model_selection import GridSearchCV
 
-from ..utils.utils import *
-from ..utils.settings import display_settings
+from bound_cells.utils.util_functions import *
 
 # Define the negative log likelihood function
 def neg_log_likelihood(bandwidth, data):

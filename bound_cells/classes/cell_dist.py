@@ -52,11 +52,10 @@ Methods:
 
 from scipy.spatial import Voronoi
 
-from . import stats, geometry
-from ..visualization import display, image_manip
-from ..utils.utils import *
-from ..utils.enums import PointType
-from ..utils.settings import morph_settings
+from bound_cells.cells import stats, geometry
+from bound_cells.visualization import display, image_manip
+from bound_cells.utils.util_functions import *
+from bound_cells.utils.enums import PointType
 
 class CellDist:
     def __init__(self, points, dim, mpp=1, id=None):
@@ -104,8 +103,6 @@ class CellDist:
     def find_border(self, custom_alpha=None):
         
         self.alpha = self.mean_icd if custom_alpha is None else custom_alpha 
-        
-        print(self.mean_icd)
             
         edges = geometry.get_outline(self.points, self.alpha).edges()
     
@@ -148,7 +145,7 @@ class CellDist:
                      fill=True, 
                      point_type=PointType.POINT, 
                      point_style=".", 
-                     point_color='orange', 
+                     point_color='black', 
                      point_size=3, 
                      line_color="black", 
                      line_width=1, 
@@ -157,7 +154,8 @@ class CellDist:
         
         cells = self.bound_cells if bound is True else self.cells
         
-        display.show_voronoi(self.vor, 
+        display.show_voronoi(self.vor,
+                             self.dim, 
                              cells,
                              fill, 
                              point_type, 
@@ -283,7 +281,7 @@ class CellDist:
         print('Microns per pixel                          {:.{prec}f}'.format(self.mpp, prec=self.stat_prec))
         if self.alpha is not None:
             print('Alpha value                            {:.{prec}f}'.format(self.alpha, prec=self.stat_prec))
-            print('Dilation strength                      {:.{prec}f}'.format(self.dilation_strength, prec=self.stat_prec))
+            # print('Dilation factor                        {:.{prec}f}'.format(self.dilation_factor, prec=self.stat_prec))
         
         print('_________________Unbound___________________\n')
         print('Total number of cells                      {}'.format(self.num_unbound_cells))

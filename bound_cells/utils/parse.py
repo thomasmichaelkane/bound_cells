@@ -7,7 +7,7 @@ Module Functions:
 - mpp(arg): Validates and returns the microns per pixel (mpp) value.
 - density(arg): Validates and returns the density value.
 - dim(arg): Validates and returns the dimension value.
-- file_name(arg): Validates and returns the file name, ensuring it is a valid CSV file.
+- path(arg): Validates and returns the file name, ensuring it is a valid CSV file.
 - min_sep(arg): Validates and returns the minimum separation value.
 - alpha_count(arg): Validates and returns the alpha count, ensuring it is an odd number and not too high.
 - alpha_allowance(arg): Validates and returns the alpha allowance, ensuring it is between 0 and 1.
@@ -111,7 +111,7 @@ def mpp(arg):
     
         print(e)
 
-def file_name(arg):
+def path(arg):
     
     if arg.endswith(".csv"):
         

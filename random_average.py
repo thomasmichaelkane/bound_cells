@@ -25,8 +25,8 @@ Arguments
 {optional} number of iterations : int
     The number of iterations to run before finding an average. The default value is 10.
     
-{optional} number of seeds : int
-    The number of seeds (or cells). How many cells will be distributed. The default value is 100.
+{optional} number of cells : int
+    The number of cells. How many cells will be distributed. The default value is 100.
 
 {optional} microns per pixel : float
     The scaling factor. How many microns per pixel in the original image. The default value is 1 (1um=1pix).
@@ -43,10 +43,10 @@ Arguments
     
 import sys
 
-from lib.cells.cell_dist import CellDist
-from lib.cells import seeds
-from lib.utils import parse
-from lib.utils.utils import *
+from bound_cells import CellDist
+from bound_cells.cells import seeds
+from bound_cells.utils import parse
+from bound_cells.utils.util_functions import *
 
 def main():
     

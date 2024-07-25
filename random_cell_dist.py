@@ -24,8 +24,8 @@ Notes
 
 Arguments
 ----------
-{optional} number of seeds : int
-    The number of seeds (or cells). How many cells will be distributed.
+{optional} number of cells : int
+    The number of cells. How many cells will be distributed.
     
 {optional} dimension (1) : int
     The first (or only) dimension - X. If no other argumented are parsed,
@@ -33,7 +33,7 @@ Arguments
     value is 100. (PIXELS)
     
 {optional} dimension (2) : int
-    The sedcond dimension - Y. The default value is 100. (PIXELS)
+    The second dimension - Y. The default value is 100. (PIXELS)
     
 {optional} minimum separation : float
     The minimum separation between cells. Bare in mind this number cannot
@@ -43,11 +43,10 @@ Arguments
 """
 
 import sys
-
-from lib.cells.cell_dist import CellDist
-from lib.cells import seeds
-from lib.utils import parse
-from lib.utils.utils import *
+from bound_cells import CellDist
+from bound_cells.cells import seeds
+from bound_cells.utils import parse
+from bound_cells.utils.util_functions import *
 
 def main():
     

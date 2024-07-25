@@ -18,8 +18,8 @@ from scipy.spatial import Delaunay
 from shapely.geometry import Polygon
 import networkx as nx
 
-from ..utils.utils import *
-from ..visualization import display
+from bound_cells.utils.util_functions import *
+from bound_cells.visualization import display
 
 import cv2
 import numpy as np
