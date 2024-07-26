@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/thomasmichaelkane/bound_cells">
-    <img src="docs/images/bound_cells.gif" alt="Logo" width="200">
+    <img src="docs/images/bound_cell.gif" alt="bound cell" width="200">
   </a>
 
 <h3 align="center">bound_cells</h3>
