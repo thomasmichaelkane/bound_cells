@@ -54,9 +54,6 @@ This project is to allow analysis of cell distributions that have an arbitrary b
 
 By using this code you can estimate the border of any cell distribution by simply supplying a the coordinates of these cells, and obtain statistics from voronoi analysis, and visualise the distribution in many ways.
 
-<img src="docs/images/clustering.png" alt="Logo" width="200">
-<img src="docs/images/cells_from_clusters.png" alt="Logo" width="200">
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
